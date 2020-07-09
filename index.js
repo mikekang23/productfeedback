@@ -12,8 +12,11 @@ passport.use(
       clientSecret: keys.googleClientSecret,
       callbackURL: 'http://localhost:5000/auth/google/callback'
     },
-    (accessToken) => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log('accessToken', accessToken);
+      console.log('refreshToken', refreshToken);
+      console.log('profile', profile);
+      console.log('done', done);
     }
   )
 );
@@ -23,11 +26,7 @@ app.get('/auth/google', passport.authenticate('google',{
 }));
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+  passport.authenticate('google'));
 
 app.get('/', (req, res) => {
   res.send('hi');
