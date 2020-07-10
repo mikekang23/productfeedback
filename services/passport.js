@@ -40,7 +40,7 @@ passport.use(
           }
         })
         .catch(() => {
-
+          console.log('failllllllllll');
         })
 
     }
