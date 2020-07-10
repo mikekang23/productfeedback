@@ -39,9 +39,9 @@ passport.use(
               });
           }
         })
-        .catch(() => {
-          console.log('failllllllllll');
-        })
+        .catch((err) => {
+          console.log(err);
+        });
 
     }
   )
